@@ -2,11 +2,13 @@ import { useEffect, useState } from "react"
 import API from '../utils/API'
 import { Link, useNavigate } from "react-router-dom"
 import { useAuthContext } from "../utils/AuthContext"
+import Employee from "../components/UI/Employee"
 
 export default function ProfilePage(){
     const {isLoggedIn, token} = useAuthContext()
     const [showFirm , setShowFirm] = useState(false)
     const [showIncomeForm, setShowIncomeForm] = useState(false)
+    const [showCategory, setShowCategory] = useState(false)
     const [title, setTtile] = useState('')
     const [price, setPrice] = useState('')
     const [size, setSize] = useState('')
@@ -33,15 +35,7 @@ export default function ProfilePage(){
     const renderSecondSelect = () => {
       switch (selectedCategory) {
           case 'expense':
-              return (
-                  <select>
-                      <option value="Employee">Add an Employee</option>
-                      <option value="item">Add an item</option>
-                      <option value="loan">Add a loan</option>
-                      <option value="oneTimeExpense">Add a oneTimeExpense</option>
-                      <option value="monthlyExpense">Add a monthlyExpense</option>
-                  </select>
-              );
+              setShowCategory(!showCategory)
           case 'income':
               setShowIncomeForm(!showIncomeForm)
           default:
@@ -75,13 +69,16 @@ export default function ProfilePage(){
                                 <option value="expense">Add an expense</option>
                                 <option value="income">Add an income</option>
                             </select>
-                            {selectedCategory && (
+                            {showCategory && (
                                 <>
-                                    <select>
-                                        <option value="">Select Option</option>
-                                        {renderSecondSelect()}
-                                    </select>
-                                    <button type="submit">Submit changes</button>
+                                     <select>
+                                        <option id="11" value="Employee">Add an Employee</option>
+                                        <option id="12" value="item">Add an item</option>
+                                        <option id="13" value="loan">Add a loan</option>
+                                        <option id="14" value="oneTimeExpense">Add a oneTimeExpense</option>
+                                        <option id="15" value="monthlyExpense">Add a monthlyExpense</option>
+                                      </select>
+                                      <button type="submit">Choose</button>
                                 </>
                             )}
                         </div>
