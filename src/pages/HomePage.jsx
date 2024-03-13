@@ -52,9 +52,9 @@ export default function HomePage(){
     return (
         <>
              <h1>login</h1>
-             <div className='loginPart'>
-          <div className='loginDev'>
-            <form className='formLogin' onSubmit={(e)=>handleSubmit(e, {userName, PassworD})}>
+             <div className='loginPart mx-auto justify-between'>
+          <div className='loginDev container mx-auto justify-between'>
+            <form className='table-auto' onSubmit={(e)=>handleSubmit(e, {userName, PassworD})}>
                 <input
                 value={userName}
                 name="userName"

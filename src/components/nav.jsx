@@ -11,9 +11,9 @@ export default function Nav() {
     }
   
   return (
-     <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className='container-fluid'>
-        <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+     <nav className="navbar fixed top-0	flex w-full justify-between items-center px-4">
+      <div className='flex space-x-4'>
+        <ul className='flex space-x-4'>
         <li className='nav-item'>
           <Link className="nav-link  newNavHead" to="/">
             Home
@@ -33,15 +33,14 @@ export default function Nav() {
               </div>
              ) :(
                 <li className='nav-item'>
-              <Link className="nav-link  newNavHead" to="/login">
-                Login
+              <Link className="nav-link  newNavHead" to="/">
+                login
               </Link>
             </li>
               )
             }           
         </ul>
       </div>
-      
     </nav>
   )
  

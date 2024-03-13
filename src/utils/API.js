@@ -1,8 +1,13 @@
+import useSwr from 'swr'
+
 const URL_PREFIX = "http://localhost:3001"
 
+const fetcher = URL => fetch(URL).then(res=>{
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }res.json})
+
 const API = {
-
-
     login:userObj=>{
         return fetch(`${URL_PREFIX}/api/users/login`,{
             method:"POST",
@@ -55,15 +60,11 @@ const API = {
               })
         },
     getAllProduct:()=>{
-            return fetch(`${URL_PREFIX}/api/products`,{
-                method:"GET",
-            }).then(res=>{
-                if(!res.ok){
-                    console.log(Error)
-                 throw new Error("invalid token")
-                }
-                return res.json()
-              })
+            const {data, error} = useSwr(`${URL_PREFIX}/api/products`, fetcher)
+            if (error){
+                throw new Error('something went wrong')
+            }
+            return data
         },
      getOneProduct: (productId)=>{
             return fetch(`${URL_PREFIX}/api/products/${productId}`, {
