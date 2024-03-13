@@ -3,6 +3,10 @@ import API from '../utils/API'
 import { Link, useNavigate } from "react-router-dom"
 import { useAuthContext } from "../utils/AuthContext"
 import Employee from "../components/UI/Employee"
+import Item from '../components/UI/Item'
+import Loan from '../components/UI/Loan'
+import Monthly from '../components/UI/Monthly'
+import OneTime from '../components/UI/OneTime'
 
 export default function ProfilePage(){
     const {isLoggedIn, token} = useAuthContext()
@@ -13,6 +17,8 @@ export default function ProfilePage(){
     const [price, setPrice] = useState('')
     const [size, setSize] = useState('')
     const navigate = useNavigate()
+    const [selectedCategory, setSelectedCategory] = useState('')
+    const [secondValue, setSecondValue] = useState('')
     const userId = localStorage.getItem('userId')
     console.log(userId)
     if (!isLoggedIn) {
@@ -56,6 +62,25 @@ export default function ProfilePage(){
     })
   }
 
+  const handleSecondCategory = (event)=>{
+    setSecondValue(event.target.value)
+  }
+
+  const renderThirdSelect = ()=>{
+    switch(secondValue){
+      case 'Employee':
+           return <Employee />
+      case 'item':
+        return <Item />
+      case 'loan':
+        return <Loan />
+      case 'oneTimeExpense':
+        return <OneTime />
+      case 'monthlyExpense':
+        return <Monthly />
+    }
+  }
+
 
     return (
         <>
@@ -69,9 +94,11 @@ export default function ProfilePage(){
                                 <option value="expense">Add an expense</option>
                                 <option value="income">Add an income</option>
                             </select>
+                            {showCategory && renderSecondSelect()}
                             {showCategory && (
                                 <>
-                                     <select>
+                                     <select onChange={handleSecondCategory}>
+                                        <option value="">Select Category</option>
                                         <option id="11" value="Employee">Add an Employee</option>
                                         <option id="12" value="item">Add an item</option>
                                         <option id="13" value="loan">Add a loan</option>
@@ -79,6 +106,7 @@ export default function ProfilePage(){
                                         <option id="15" value="monthlyExpense">Add a monthlyExpense</option>
                                       </select>
                                       <button type="submit">Choose</button>
+                                      {renderThirdSelect()}
                                 </>
                             )}
                         </div>
