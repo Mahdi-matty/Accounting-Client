@@ -16,7 +16,7 @@ import { useState } from "react"
     return (
         <>
         <div>
-          <form onSubmit={handleFormSubmit}>
+          <form onSubmit={handleFormSubmit} className="focus-within">
           <input
             value={username}
             name="username"

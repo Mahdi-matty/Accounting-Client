@@ -7,11 +7,11 @@ export default function Nav() {
  
   const logout = ()=>{
     localStorage.removeItem('token')
-      navigate('/login')
+      navigate('/')
     }
   
   return (
-     <nav className="navbar fixed top-0	flex w-full justify-between items-center px-4">
+     <nav className="navbar fixed top-0	flex w-full justify-between justify-item-end bg-teal-400 h-10">
       <div className='flex space-x-4'>
         <ul className='flex space-x-4'>
         <li className='nav-item'>
@@ -28,7 +28,10 @@ export default function Nav() {
             {isLoggedIn ? (
               <div>
               <li className='nav-item'>
-                <button className='nav-link  newNavHead' onClick={()=>logout()}>signout</button>
+                <Link to='/logout'>
+                  logout
+                </Link>
+                {/* <button className='nav-link  newNavHead' onClick={()=>logout()}>signout</button> */}
               </li>
               </div>
              ) :(

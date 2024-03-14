@@ -1,14 +1,23 @@
 import { useState } from "react"
 
-export default function Item(){
+export default function Monthly(props){
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [amount, setAmount] = useState('')
 
+    const handleCreate = async (e)=>{
+        props.handleMonthly({
+            title: title,
+            content: content,
+            amount: amount,
+        })
+    }
+
     return (
         <>
             <div>
-                <form>
+                <h3>add a new Monthly expense</h3>
+                <form onSubmit={handleCreate}>
                         <input 
                                     name="title"
                                     id="title"

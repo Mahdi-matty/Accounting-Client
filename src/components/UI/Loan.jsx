@@ -1,22 +1,32 @@
 import { useState } from "react"
 
-export default function Item(){
+export default function Loan(props){
     const [title, setTitle] = useState('')
     const [duration, setDuration] = useState('')
     const [amount, setAmount] = useState('')
     const [interest, setInterest] = useState('')
 
+    const handleCreate = async (e)=>{
+        props.handleLoan({
+            title: title,
+            duration: duration,
+            amount: amount,
+            interest: interest
+        })
+    }
+
 
     return (
         <>
             <div>
-                <form>
+                <h3>add new Loan</h3>
+                <form onSubmit={handleCreate}>
                         <input 
                                     name="title"
                                     id="title"
                                     value={title}
                                     onChange={e=>setTitle(e.target.value)}
-                                    placeholder="Type a Question"
+                                    placeholder="Type a title"
                                     type="text"
                                     className="questionNewCard"/>
                                     <input 
@@ -24,7 +34,7 @@ export default function Item(){
                                     id="duration"
                                     value={duration}
                                     onChange={e=>setDuration(e.target.value)}
-                                    placeholder="Type a Question"
+                                    placeholder="Type the duration"
                                     type="text"
                                     className="questionNewCard"/>
                                     <input 
@@ -32,7 +42,7 @@ export default function Item(){
                                     id="amount"
                                     value={amount}
                                     onChange={e=>setAmount(e.target.value)}
-                                    placeholder="Type a Question"
+                                    placeholder="Type amount"
                                     type="text"
                                     className="questionNewCard"/>
                                      <input 
@@ -40,7 +50,7 @@ export default function Item(){
                                     id="interest"
                                     value={interest}
                                     onChange={e=>setInterest(e.target.value)}
-                                    placeholder="Type a Question"
+                                    placeholder="Type interest rate"
                                     type="text"
                                     className="questionNewCard"/>
                                     <button type="submit">Submit changes</button>

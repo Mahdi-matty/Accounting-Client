@@ -51,10 +51,10 @@ export default function HomePage(){
 
     return (
         <>
-             <h1>login</h1>
-             <div className='loginPart mx-auto justify-between'>
-          <div className='loginDev container mx-auto justify-between'>
-            <form className='table-auto' onSubmit={(e)=>handleSubmit(e, {userName, PassworD})}>
+        <div className='bg-blue-200 h-68 mt-20 ml-64  w-64 p-8 flex flex-col items-center justify-center h-screen'>
+        <h1 className="text-3xl font-bold mb-4">login</h1>
+          <div className='flex flex-col items-right border-black border-solid border-6'>
+            <form className='focus-within' onSubmit={(e)=>handleSubmit(e, {userName, PassworD})}>
                 <input
                 value={userName}
                 name="userName"
