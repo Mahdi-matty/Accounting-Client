@@ -1,20 +1,29 @@
 import { useState } from "react"
 
-export default function Item(){
+export default function Item(props){
     const [title, setTitle] = useState('')
     const [size, setSize] = useState('')
     const [price, setPrice] = useState('')
 
+    const handleCreate = async(e)=>{
+        props.handleItem({
+            title: title,
+            size: size,
+            price: price
+        })
+    }
+
     return (
         <>
             <div>
-                <form>
+                <h2>add an item</h2>
+                <form onSubmit={handleCreate}> 
                         <input 
                                     name="title"
                                     id="title"
                                     value={title}
                                     onChange={e=>setTitle(e.target.value)}
-                                    placeholder="Type a Question"
+                                    placeholder="Type a title"
                                     type="text"
                                     className="questionNewCard"/>
                                     <input 
@@ -22,7 +31,7 @@ export default function Item(){
                                     id="size"
                                     value={size}
                                     onChange={e=>setSize(e.target.value)}
-                                    placeholder="Type a Question"
+                                    placeholder="Type a size"
                                     type="text"
                                     className="questionNewCard"/>
                                     <input 
@@ -30,7 +39,7 @@ export default function Item(){
                                     id="price"
                                     value={price}
                                     onChange={e=>setPrice(e.target.value)}
-                                    placeholder="Type a Question"
+                                    placeholder="Type a price"
                                     type="text"
                                     className="questionNewCard"/>
                                     <button type="submit">Submit changes</button>

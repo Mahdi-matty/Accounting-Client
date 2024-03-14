@@ -1,20 +1,30 @@
 import { useState } from "react"
 
-export default function Employee(){
+export default function Employee(props){
     const [username, setUserName] = useState('')
     const [hours, setHours] = useState('')
     const [payPerHour, setPayPerhour] = useState('')
 
+    const addNewEmployee = async(e)=>{
+        e.preventDefault()
+        props.handleEmploy({
+            username: username,
+            hours: hours,
+            payPerHour: payPerHour
+        })
+    }
+
     return (
         <>
             <div>
-                <form>
+                <h3>add New Employee</h3>
+                <form onSubmit={addNewEmployee}>
                         <input 
                                     name="username"
                                     id="username"
                                     value={username}
                                     onChange={e=>setUserName(e.target.value)}
-                                    placeholder="Type a Question"
+                                    placeholder="Type a username"
                                     type="text"
                                     className="questionNewCard"/>
                                     <input 
@@ -22,7 +32,7 @@ export default function Employee(){
                                     id="hours"
                                     value={hours}
                                     onChange={e=>setHours(e.target.value)}
-                                    placeholder="Type a Question"
+                                    placeholder="Type hour"
                                     type="text"
                                     className="questionNewCard"/>
                                     <input 
@@ -30,7 +40,7 @@ export default function Employee(){
                                     id="payPerHour"
                                     value={payPerHour}
                                     onChange={e=>setPayPerhour(e.target.value)}
-                                    placeholder="Type a Question"
+                                    placeholder="Type payperHour"
                                     type="text"
                                     className="questionNewCard"/>
                                     <button type="submit">Submit changes</button>
