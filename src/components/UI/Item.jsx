@@ -4,12 +4,15 @@ export default function Item(props){
     const [title, setTitle] = useState('')
     const [size, setSize] = useState('')
     const [price, setPrice] = useState('')
+    const userId = localStorage.getItem('userId')
 
     const handleCreate = async(e)=>{
+        e.preventDefault()
         props.handleItem({
             title: title,
             size: size,
-            price: price
+            price: price,
+            userId: userId
         })
     }
 

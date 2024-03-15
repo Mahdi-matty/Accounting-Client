@@ -5,13 +5,16 @@ export default function Loan(props){
     const [duration, setDuration] = useState('')
     const [amount, setAmount] = useState('')
     const [interest, setInterest] = useState('')
+    const userId = localStorage.getItem('userId')
 
     const handleCreate = async (e)=>{
+        e.preventDefault()
         props.handleLoan({
             title: title,
             duration: duration,
             amount: amount,
-            interest: interest
+            interest: interest,
+            userId: userId
         })
     }
 

@@ -485,7 +485,7 @@ const API = {
                 return res.json()
             })
         },    
-    createOneTimeExpense:(token,OneTimeObj)=>{
+    createOneTimeExpense:(token, OneTimeObj)=>{
             return fetch(`${URL_PREFIX}/api/onetime`,{
                 method:"POST",
                 body:JSON.stringify(OneTimeObj),
