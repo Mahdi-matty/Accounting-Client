@@ -7,16 +7,15 @@ import Item from '../components/UI/Item'
 import Loan from '../components/UI/Loan'
 import Monthly from '../components/UI/Monthly'
 import OneTime from '../components/UI/OneTime'
+import Product from "../components/UI/Product"
+import Expense from "../components/UI/Expense"
 
 export default function ProfilePage(){
     const {isLoggedIn, token} = useAuthContext()
     const [showAddForm, setShowAddForm] = useState(false);
-    const [showFirm , setShowFirm] = useState(false)
     const [showIncomeForm, setShowIncomeForm] = useState(false)
     const [showCategory, setShowCategory] = useState(false)
-    const [title, setTtile] = useState('')
-    const [price, setPrice] = useState('')
-    const [size, setSize] = useState('')
+    const [showExpense, setShowExpense] = useState(false)
     const [selectedCategory, setSelectedCategory] = useState('')
     const [secondValue, setSecondValue] = useState('')
     const userId = localStorage.getItem('userId')
@@ -28,10 +27,6 @@ export default function ProfilePage(){
           </div>
         );
       }
-
-    // const showAddForm = ()=>{
-    //   setShowFirm(!showFirm)
-    // }
 
     const handleCategoryChange = (event) => {
       setSelectedCategory(event.target.value);
@@ -56,7 +51,8 @@ export default function ProfilePage(){
     const productObj = {
       title: title,
       price: price,
-      size: size
+      size: size,
+      userId: userId
     }
     API.createProduct(token, productObj).then(data=>{
       console.log(data)
@@ -66,7 +62,8 @@ export default function ProfilePage(){
     const employeeObj = {
       username: eObj.username,
       hours: eObj.hours,
-      payPerHour : eObj.payPerHour
+      payPerHour : eObj.payPerHour,
+      userId: userId
     }
     API.createEmployee(token, employeeObj).then(data=>{
       console.log(data)
@@ -76,7 +73,8 @@ export default function ProfilePage(){
     const itemObj = {
       title: iObj.title,
       size: iObj.size,
-      price : iObj.price
+      price : iObj.price,
+      userId: userId
     }
     API.createitem(token, itemObj).then(data=>{
       console.log(data)
@@ -87,7 +85,8 @@ export default function ProfilePage(){
       title: lObj.title,
       duration: lObj.duration,
       amount : lObj.amount,
-      interest:lObj.interest
+      interest:lObj.interest,
+      userId: userId
     }
     API.createloan(token, loanObj).then(data=>{
       console.log(data)
@@ -98,6 +97,7 @@ export default function ProfilePage(){
       title: mObj.title,
       content: mObj.content,
       amount : mObj.amount,
+      userId: userId
     }
     API.createMonthlyExpens(token, monthlyObj).then(data=>{
       console.log(data)
@@ -108,6 +108,7 @@ export default function ProfilePage(){
       title: oObj.title,
       content: oObj.content,
       amount : oObj.amount,
+      userId: userId
     }
     API.createOneTimeExpense(token, OneTimeObj).then(data=>{
       console.log(data)
@@ -165,36 +166,7 @@ export default function ProfilePage(){
                         </div>
                         <div>
                             {showIncomeForm && (
-                                <form onSubmit={addNewIncome} className="py-6">
-                                    <input
-                                        name="title"
-                                        id="title"
-                                        value={title}
-                                        onChange={e => setTitle(e.target.value)}
-                                        placeholder="Title"
-                                        type="text"
-                                        className="questionNewCard"
-                                    />
-                                    <input
-                                        name="size"
-                                        id="size"
-                                        value={size}
-                                        onChange={e => setSize(e.target.value)}
-                                        placeholder="Size"
-                                        type="text"
-                                        className="questionNewCard"
-                                    />
-                                    <input
-                                        name="price"
-                                        id="price"
-                                        value={price}
-                                        onChange={e => setPrice(e.target.value)}
-                                        placeholder="Price"
-                                        type="text"
-                                        className="questionNewCard"
-                                    />
-                                    <button type="submit">Submit changes</button>
-                                </form>
+                               <Product handleProduct={addNewIncome}/>
                             )}
                         </div>
                     </div>
@@ -202,6 +174,12 @@ export default function ProfilePage(){
             )}
             <div className="h-68 top-50 w-68 flex flex-col items-center justify-center h-screen">
                 <button onClick={()=>setShowAddForm(true)}>Add new line :</button>
+                <button onClick={()=>setShowExpense(true)}>show Expenses</button>
+            </div>
+            <div className="h-68 top-50 w-68 flex flex-col items-center justify-center h-screen">
+                              {showExpense && (
+                                <Expense />
+                              )}
             </div>
         </>
     );
