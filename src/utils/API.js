@@ -77,6 +77,19 @@ const API = {
                 }
             })
         },
+    fetchUserProduct: (token, userId)=>{
+        return fetch(`${URL_PREFIX}/api/products/user/${userId}`, {
+            method: 'GET',
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+                throw new Error('something went wrong')
+            }
+            return res.json()
+        })
+    },
     createProduct:(token,productObj)=>{
             return fetch(`${URL_PREFIX}/api/products`,{
                 method:"POST",
@@ -141,6 +154,19 @@ const API = {
                 }else{
                     return res.json()
                 }
+            })
+        },
+    fetcItemsUser: (token, userId)=>{
+            return fetch(`${URL_PREFIX}/api/items/user/${userId}`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(res=>{
+                if(!res.ok){
+                    throw new Error('something went wrong')
+                }
+                return res.json()
             })
         },
     createitem:(token,itemObj)=>{
@@ -209,6 +235,19 @@ const API = {
                 }
             })
     },
+    fetchEmploUser: (token, userId)=>{
+        return fetch(`${URL_PREFIX}/api/employees/user/${userId}`, {
+            method: 'GET',
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+                throw new Error('something went wrong')
+            }
+            return res.json()
+        })
+    },
     createEmployee:(token,employeObj)=>{
             return fetch(`${URL_PREFIX}/api/employees`,{
                 method:"POST",
@@ -273,6 +312,19 @@ const API = {
                 }else{
                     return res.json()
                 }
+            })
+        },
+    fetchLoanUser: (token, userId)=>{
+            return fetch(`${URL_PREFIX}/api/loan/user/${userId}`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(res=>{
+                if(!res.ok){
+                    throw new Error('something went wrong')
+                }
+                return res.json()
             })
         },
     createloan:(token,loanObj)=>{
@@ -341,6 +393,19 @@ const API = {
                 }
             })
         },
+    fetchMonthUser: (token, userId)=>{
+            return fetch(`${URL_PREFIX}/api/monthexpens/user/${userId}`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(res=>{
+                if(!res.ok){
+                    throw new Error('something went wrong')
+                }
+                return res.json()
+            })
+        },
     createMonthlyExpens:(token,monethlyObj)=>{
             return fetch(`${URL_PREFIX}/api/monthexpens`,{
                 method:"POST",
@@ -407,6 +472,19 @@ const API = {
                 }
             })
         },
+    fetchOneTimeUser: (token, userId)=>{
+            return fetch(`${URL_PREFIX}/api/onetime/user/${userId}`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(res=>{
+                if(!res.ok){
+                    throw new Error('something went wrong')
+                }
+                return res.json()
+            })
+        },    
     createOneTimeExpense:(token,OneTimeObj)=>{
             return fetch(`${URL_PREFIX}/api/onetime`,{
                 method:"POST",
@@ -473,6 +551,19 @@ const API = {
                 }
             })
         },
+    fetchExpenses: (token, monthId, userId)=>{
+            return fetch(`${URL_PREFIX}/api/expense/month/${monthId}/user/${userId}`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(res=>{
+                if(!res.ok){
+                    throw new Error('something went wrong')
+                }
+                return res.json()
+            })
+        }, 
     getMonthExpense: (monthId)=>{
             return fetch(`${URL_PREFIX}/api/expense/month/${monthId}`, {
                 method: 'GET',
@@ -550,6 +641,19 @@ const API = {
                 }
             })
         },
+    fetchExpenses: (token, monthId, userId)=>{
+            return fetch(`${URL_PREFIX}/api/balance/month/${monthId}/user/${userId}`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(res=>{
+                if(!res.ok){
+                    throw new Error('something went wrong')
+                }
+                return res.json()
+            })
+        }, 
     createBalance:(token,balanceObj)=>{
             return fetch(`${URL_PREFIX}/api/balance`,{
                 method:"POST",
