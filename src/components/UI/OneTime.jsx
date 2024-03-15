@@ -4,12 +4,15 @@ export default function OneTime(props){
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [amount, setAmount] = useState('')
+    const userId = localStorage.getItem('userId')
 
     const handleCreate = async(e)=>{
-        props.handleone({
+        e.preventDefault()
+        props.handleOne({
             title: title,
             content: content,
             amount: amount,
+            userId: userId
         })
             
     }

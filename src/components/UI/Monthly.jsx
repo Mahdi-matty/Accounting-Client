@@ -4,12 +4,15 @@ export default function Monthly(props){
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [amount, setAmount] = useState('')
+    const userId = localStorage.getItem('userId')
 
     const handleCreate = async (e)=>{
+        e.preventDefault()
         props.handleMonthly({
             title: title,
             content: content,
             amount: amount,
+            userId: userId
         })
     }
 

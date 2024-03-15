@@ -46,13 +46,12 @@ export default function ProfilePage(){
               return null;
       }
   };
-  const addNewIncome = (event)=>{
-    event.preventDefault()
+  const addNewIncome = (iObj)=>{
     const productObj = {
-      title: title,
-      price: price,
-      size: size,
-      userId: userId
+      title: iObj.title,
+      price: iObj.price,
+      size: iObj.size,
+      userId: iObj.userId
     }
     API.createProduct(token, productObj).then(data=>{
       console.log(data)
@@ -63,7 +62,7 @@ export default function ProfilePage(){
       username: eObj.username,
       hours: eObj.hours,
       payPerHour : eObj.payPerHour,
-      userId: userId
+      userId: eObj.userId
     }
     API.createEmployee(token, employeeObj).then(data=>{
       console.log(data)
@@ -74,7 +73,7 @@ export default function ProfilePage(){
       title: iObj.title,
       size: iObj.size,
       price : iObj.price,
-      userId: userId
+      userId: iObj.userId
     }
     API.createitem(token, itemObj).then(data=>{
       console.log(data)
@@ -86,7 +85,7 @@ export default function ProfilePage(){
       duration: lObj.duration,
       amount : lObj.amount,
       interest:lObj.interest,
-      userId: userId
+      userId: lObj.userId
     }
     API.createloan(token, loanObj).then(data=>{
       console.log(data)
@@ -97,7 +96,7 @@ export default function ProfilePage(){
       title: mObj.title,
       content: mObj.content,
       amount : mObj.amount,
-      userId: userId
+      userId: mObj.userId
     }
     API.createMonthlyExpens(token, monthlyObj).then(data=>{
       console.log(data)
@@ -106,9 +105,9 @@ export default function ProfilePage(){
   const addOne = ( oObj)=>{
     const OneTimeObj = {
       title: oObj.title,
-      content: oObj.content,
       amount : oObj.amount,
-      userId: userId
+      content: oObj.content,
+      userId: oObj.userId
     }
     API.createOneTimeExpense(token, OneTimeObj).then(data=>{
       console.log(data)

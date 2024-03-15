@@ -4,13 +4,15 @@ export default function Employee(props){
     const [username, setUserName] = useState('')
     const [hours, setHours] = useState('')
     const [payPerHour, setPayPerhour] = useState('')
+    const userId = localStorage.getItem('userId')
 
     const addNewEmployee = async(e)=>{
         e.preventDefault()
         props.handleEmploy({
             username: username,
             hours: hours,
-            payPerHour: payPerHour
+            payPerHour: payPerHour,
+            userId: userId
         })
     }
 
