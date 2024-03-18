@@ -12,6 +12,8 @@ export default function Expense(){
     const [monthTot, setMonthTot] = useState('')
     const [oneTot, setOneTot] = useState('')
     const [amount, setAmount] = useState('')
+    const [expenseAmount, setExpenseAmount] = useState('')
+    const [month, setMonth] = useState('')
 
     useEffect(() => {
         const itemsPromise = API.fetcItemsUser(token, userId);
@@ -128,6 +130,12 @@ export default function Expense(){
         }
 
         API.createExpense(token, expenseObj).then(data=>{
+            setExpenseAmount(data.amount)
+            const monthData= data.month
+            const [monthNumber, year] = monthData.split("-").map(Number);
+            const date = new Date(year, monthNumber - 1);
+            const monthName = date.toLocaleString('default', { month: 'long' });
+            setMonth(`${monthName} ${year}` )
             console.log(data)
         })
      }
@@ -137,6 +145,23 @@ export default function Expense(){
         <>
         <div>
             <button onClick={(e)=>calculateExpense(e)}>calculate</button>
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                    <th>All expense:</th>
+                    <th>{expenseAmount}</th>
+                    
+                        </tr>
+                        <tr>
+                            <th>For the :</th>
+                        <th>{month}</th>
+                        </tr>
+                    </tbody>
+                
+            </table>
+            </div>
+            
         </div>
         
         </>
