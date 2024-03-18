@@ -90,6 +90,19 @@ const API = {
             return res.json()
         })
     },
+    catchIncomeMonth:(token, userId, monthId)=>{
+        return fetch(`${URL_PREFIX}/api/products/user/${userId}/month/${monthId}`, {
+            method: 'GET',
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+                throw new Error('something went wrong')
+            }
+            return res.json()
+        })
+    },
     createProduct:(token,productObj)=>{
             return fetch(`${URL_PREFIX}/api/products`,{
                 method:"POST",
@@ -698,8 +711,8 @@ const API = {
                 return res.json()
               })
         },
-    getMonthBalance: (monthId)=>{
-            return fetch(`${URL_PREFIX}/api/balance/month/${monthId}`, {
+    getMonthBalance: (monthId, userId)=>{
+            return fetch(`${URL_PREFIX}/api/balance/month/${monthId}/user/${userId}`, {
                 method: 'GET',
             }).then(res=>{
                 if(!res.ok){

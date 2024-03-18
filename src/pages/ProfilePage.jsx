@@ -9,6 +9,7 @@ import Monthly from '../components/UI/Monthly'
 import OneTime from '../components/UI/OneTime'
 import Product from "../components/UI/Product"
 import Expense from "../components/UI/Expense"
+import Balance from "../components/UI/Balance"
 
 export default function ProfilePage(){
     const {isLoggedIn, token} = useAuthContext()
@@ -16,6 +17,7 @@ export default function ProfilePage(){
     const [showIncomeForm, setShowIncomeForm] = useState(false)
     const [showCategory, setShowCategory] = useState(false)
     const [showExpense, setShowExpense] = useState(false)
+    const [showBalanace, setShowBalance] = useState(false)
     const [selectedCategory, setSelectedCategory] = useState('')
     const [secondValue, setSecondValue] = useState('')
     const userId = localStorage.getItem('userId')
@@ -174,10 +176,16 @@ export default function ProfilePage(){
             <div className="h-68 top-50 w-68 flex flex-col items-center justify-center h-screen">
                 <button onClick={()=>setShowAddForm(true)}>Add new line :</button>
                 <button onClick={()=>setShowExpense(true)}>show Expenses</button>
+                <button onClick={()=>setShowBalance(true)}>show balance</button>
             </div>
             <div className="h-68 top-50 w-68 flex flex-col items-center justify-center h-screen">
                               {showExpense && (
                                 <Expense />
+                              )}
+            </div>
+            <div className="h-68 top-50 w-68 flex flex-col items-center justify-center h-screen">
+                              {showBalanace && (
+                                <Balance />
                               )}
             </div>
         </>
